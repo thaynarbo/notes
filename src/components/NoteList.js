@@ -1,17 +1,21 @@
-import NoteItem from './NoteItem'
+import NoteItem from './NoteItem';
 
-const NoteList = (props) => {
-  
-    return props.data.map((note) => {
-      return ( 
-        <NoteItem
-            note={note.title}
-            key={note.id}
-            delFunction={props.onDeleteNote}
-        ></NoteItem>
-      );
-    });
+const NoteList = ({ data, handleDelete }) => {
+	return (
+		<>
+			{data.map((note) => {
+				const { id, title } = note;
+				return (
+					<NoteItem
+						key={id}
+						note={title}
+						id={id}
+						handleDelete={handleDelete}
+					></NoteItem>
+				);
+			})}
+		</>
+	);
 };
-  
+
 export default NoteList;
-  

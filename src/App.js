@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import CreateNote from './components/CreateNote';
 import NoteList from './components/NoteList';
+import NoteItem from './components/NoteItem';
+
+/*
+const Notes = [
+
+]
+*/
 
 const App = () => {
 	const [note, setNotes] = useState([]);
@@ -11,15 +18,15 @@ const App = () => {
 		});
 	};
 
-	const deleteNote = (id) => {
+	const handleDelete = (id) => {
 		const updatedNotes = note.filter((note) => note.id !== id);
-		setNotes(updatedNotes);
+		return setNotes(updatedNotes);
 	};
 
 	return (
 		<div>
-			<CreateNote onNoteAdd={addNoteHandler} onNoteDelete={deleteNote} />
-			<NoteList data={note} onDeleteNote={deleteNote} />
+			<CreateNote onNoteAdd={addNoteHandler} />
+			<NoteList data={note} handleDelete={handleDelete} />
 		</div>
 	);
 };
